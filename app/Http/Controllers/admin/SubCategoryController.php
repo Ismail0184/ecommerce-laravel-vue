@@ -15,7 +15,7 @@ class SubCategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    private $subCategories, $categories;
+    private $subCategories, $categories, $subCategory;
 
     public function index()
     {
@@ -65,7 +65,9 @@ class SubCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $this->subCategory = SubCategory::find($id);
+        $this->categories = Category::all();
+        return view('admin.subcategory.create', ['category' => $this->subCategory], ['categories' => $this->categories]);
     }
 
     /**

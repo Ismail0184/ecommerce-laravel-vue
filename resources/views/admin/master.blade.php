@@ -499,8 +499,7 @@
 
 
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#sidebarProjects" aria-expanded="false"
-                       aria-controls="sidebarProjects" class="side-nav-link">
+                    <a href="{{route('brand.view')}}" class="side-nav-link">
                         <i class="uil-briefcase"></i>
                         <span> Brand </span>
                     </a>

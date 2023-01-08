@@ -31,11 +31,16 @@
                                             <input type="hidden" name="entry_by" value="{{ Auth::user()->id }}">
                                             <div class="mb-3">
                                                 <label class="form-label" for="validationCustom01">Category</label>
-                                                <select name="category_id" class="form-control select2" data-toggle="select2" id="validationCustom01" required>
-                                                    @foreach($categories as $category)
-                                                    <option value="{{$category->id}}" @if ($subcategory->category->id==$category->id) selected @endif>{{$category->name}}</option>
-                                                    @endforeach
-                                                </select>
+                                                    <select name="category_id" class="form-control select2" data-toggle="select2" id="validationCustom01" required>
+                                                        <option></option>
+                                                        @foreach($categories as $category)
+                                                            @if (request('id')>0)
+                                                        <option value="{{$category->id}}" @if ($subcategory->category->id==$category->id) selected @endif>{{$category->name}}</option>
+                                                            @else
+                                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
                                                 <div class="invalid-feedback">This field is required!</div>
                                             </div>
 

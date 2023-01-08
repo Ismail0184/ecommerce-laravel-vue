@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 
 class UnitController extends Controller
@@ -12,9 +13,13 @@ class UnitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $unit, $units;
+
     public function index()
     {
-        return view('admin.unit.index');
+        $this->units = Unit::all();
+        return view('admin.unit.index', ['units'=>$this->units]);
     }
 
     /**
@@ -24,7 +29,7 @@ class UnitController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.unit.create');
     }
 
     /**
@@ -35,7 +40,8 @@ class UnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Unit::storeUnit($request);
+        return redirect('/admin/unit/view')->with('store_message','The unit has been saved');
     }
 
     /**
@@ -57,7 +63,8 @@ class UnitController extends Controller
      */
     public function edit($id)
     {
-        //
+        $this->unit = Unit::find($id);
+        return view('admin.unit.create', ['unit' =>$this->unit]);
     }
 
     /**
@@ -69,7 +76,8 @@ class UnitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Unit::updateUnit($request, $id);
+        return redirect('admin/unit/view')->with('update_message','This unit has been updated');
     }
 
     /**
@@ -80,6 +88,7 @@ class UnitController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Unit::destroyUnit($id);
+        return redirect('/admin/unit/view')->with('destroy_message','This unit has been deleted');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -12,9 +13,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $units;
+
     public function index()
     {
-        //
+
     }
 
     /**

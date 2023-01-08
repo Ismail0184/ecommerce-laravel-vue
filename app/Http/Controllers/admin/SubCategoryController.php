@@ -67,7 +67,7 @@ class SubCategoryController extends Controller
     {
         $this->subCategory = SubCategory::find($id);
         $this->categories = Category::all();
-        return view('admin.subcategory.create', ['category' => $this->subCategory], ['categories' => $this->categories]);
+        return view('admin.subcategory.create', ['subcategory' => $this->subCategory], ['categories' => $this->categories]);
     }
 
     /**
@@ -79,7 +79,8 @@ class SubCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        SubCategory::updateSubCategory($request, $id);
+        return redirect('/admin/sub-category/view')->with('update_message','The sub-category has been successfully updated.');
     }
 
     /**
@@ -90,6 +91,7 @@ class SubCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        SubCategory::deleteSubCategory($id);
+        return redirect('admin/sub-category/view')->with('destroy_message', 'The sub-category has been successfully deleted.');
     }
 }

@@ -77,7 +77,6 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         Category::updateCategory($request, $id);
-        //return redirect('admin/category/index')->with('update_message', 'The category has been updated successfully');
         return redirect('/admin/category/view')->with('update_message', 'The category has been successfully updated.');
 
     }

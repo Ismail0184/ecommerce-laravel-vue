@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -12,9 +13,12 @@ class BrandController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $brands;
+
     public function index()
     {
-        return view('admin.brand.index');
+        $this->brands = Brand::all();
+        return view('admin.brand.index', ['brands' =>$this->brands]);
     }
 
     /**
@@ -24,7 +28,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.brand.create');
     }
 
     /**
@@ -35,7 +39,8 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Brand::storeBrand($request);
+        return redirect('/admin/brand/view')->with('store_message','Brand has been created successfully');
     }
 
     /**
@@ -57,7 +62,8 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        //
+        $this->brand = Brand::find($id);
+        return view('/admin/brand/create', ['brand' => $this->brand]);
     }
 
     /**
@@ -69,7 +75,8 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Brand::updateBrand($request, $id);
+        return redirect('/admin/brand/view')->with('update_message','This brand has been updated');
     }
 
     /**
@@ -80,6 +87,7 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Brand::destroyBrand($id);
+        return redirect('/admin/brand/view')->with('destroy_message','This brand has been deleted!!');
     }
 }

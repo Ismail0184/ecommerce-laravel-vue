@@ -506,7 +506,7 @@
                 </li>
 
                 <li class="side-nav-item">
-                    <a href="apps-social-feed.html" class="side-nav-link">
+                    <a href="{{route('unit.view')}}" class="side-nav-link">
                         <i class="uil-rss"></i>
                         <span> Unit </span>
                     </a>

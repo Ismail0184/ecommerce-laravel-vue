@@ -55,7 +55,7 @@
                                                     <td style="vertical-align:middle">
                                                         <form action="{{route('brand.destroy', ['id' => $brand->id])}}" method="post">
                                                             @csrf
-                                                            <a href="{{route('category.edit', ['id' => $category->id])}}" class="btn btn-success btn-sm" onclick="return confirm('Are you sure want to edit? {{$category->id}}.');">
+                                                            <a href="{{route('brand.edit', ['id' => $brand->id])}}" class="btn btn-success btn-sm" onclick="return confirm('Are you sure want to edit?');">
                                                                 <i class=" ri-pencil-line"></i>
                                                             </a>
                                                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete this.');">

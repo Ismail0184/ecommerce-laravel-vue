@@ -66,7 +66,7 @@
                                                     <div class="invalid-feedback">Please choose a username.</div>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-primary" type="submit">Add New Category</button>
+                                            <button class="btn btn-primary" type="submit">@if (request('id')>0) Update @else Add New @endif Sub-category</button>
                                         </form>
                                     </div> <!-- end preview-->
                                 </div> <!-- end tab-content-->

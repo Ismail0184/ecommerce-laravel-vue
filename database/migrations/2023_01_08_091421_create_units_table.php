@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->integer('entry_by');
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

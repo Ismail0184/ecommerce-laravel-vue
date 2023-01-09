@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\brand;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\SubCategory;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -12,9 +17,13 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $products, $categories, $subcategories, $brands, $units;
+
     public function index()
     {
-        //
+        $this->products = Product::all();
+        return view('admin.product.index',['products'=>$this->products]);
     }
 
     /**
@@ -24,7 +33,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.product.create',[
+            'categories'        => Category::where('status', 1)->get(),
+            'sub_categories'    => SubCategory::where('status', 1)->get(),
+            'brands'            => brand::where('status', 1)->get(),
+            'units'             => Unit::where('status', 1)->get(),
+            ]);
     }
 
     /**

@@ -513,15 +513,14 @@
                 </li>
 
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#sidebarTasks" aria-expanded="false" aria-controls="sidebarTasks"
-                       class="side-nav-link">
+                    <a href="{{route('product.view')}}" class="side-nav-link">
                         <i class="uil-clipboard-alt"></i>
                         <span> Product </span>
                     </a>
                 </li>
 
                 <li class="side-nav-item">
-                    <a href="apps-file-manager.html" class="side-nav-link">
+                    <a href="{{route('customer.view')}}" class="side-nav-link">
                         <i class="uil-folder-plus"></i>
                         <span> Customer </span>
                     </a>
@@ -529,8 +528,7 @@
 
 
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#sidebarPages" aria-expanded="false" aria-controls="sidebarPages"
-                       class="side-nav-link">
+                    <a href="{{route('order.view')}}" class="side-nav-link">
                         <i class="uil-copy-alt"></i>
                         <span> Orders </span>
                     </a>

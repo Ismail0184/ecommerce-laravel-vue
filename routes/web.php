@@ -70,4 +70,12 @@ Route::middleware([
     Route::post('/admin/customer/update/{id}', [CustomerController::class,'update'])->name('customer.update');
     Route::post('/admin/customer/destroy/{id}', [CustomerController::class,'destroy'])->name('customer.destroy');
 
+    //order
+    Route::get('/admin/order/view', [CustomerController::class,'index'])->name('order.view');
+    Route::get('/admin/order/create', [CustomerController::class,'create'])->name('order.create');
+    Route::post('/admin/order/store', [CustomerController::class,'store'])->name('order.store');
+    Route::get('/admin/order/edit/{id}', [CustomerController::class,'edit'])->name('order.edit');
+    Route::post('/admin/order/update/{id}', [CustomerController::class,'update'])->name('order.update');
+    Route::post('/admin/order/destroy/{id}', [CustomerController::class,'destroy'])->name('order.destroy');
+
 });

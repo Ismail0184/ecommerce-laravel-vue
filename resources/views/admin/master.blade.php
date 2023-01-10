@@ -21,6 +21,8 @@
     <link href="{{asset('/')}}admin/assets/vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
     <link href="{{asset('/')}}admin/assets/vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
     <link href="{{asset('/')}}admin/assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('/')}}admin/assets/vendor/simplemde/simplemde.min.css" rel="stylesheet" type="text/css" />
+
 
 </head>
 
@@ -535,7 +537,7 @@
                 </li>
 
                 <li class="side-nav-item">
-                    <a href="landing.html" target="_blank" class="side-nav-link">
+                    <a href="{{route('user.view')}}" class="side-nav-link">
                         <i class="uil-globe"></i>
                         <span> Users </span>
                     </a>
@@ -1170,12 +1172,35 @@
 <script src="{{asset('/')}}admin/assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
 <script src="{{asset('/')}}admin/assets/vendor/select2/js/select2.min.js"></script>
 
-
-<!-- Datatable Demo Aapp js -->
 <script src="{{asset('/')}}admin/assets/js/pages/demo.datatable-init.js"></script>
 
 <script src="{{asset('/')}}admin/assets/js/pages/demo.dashboard.js"></script>
+<script src="{{asset('/')}}admin/assets/vendor/simplemde/simplemde.min.js"></script>
+<script src="{{asset('/')}}admin/assets/js/pages/demo.simplemde.js"></script>
 <script src="{{asset('/')}}admin/assets/js/app.js"></script>
 </body>
+
+<script>
+    function getSubCategory(categoryId)
+    {
+        $.ajax({
+            type: "GET",
+            url: "{{route('get-all-sub-category')}}",
+            data: {id: categoryId},
+            dataType: "JSON",
+            success: function (response) {
+                var option = '';
+                option += '<option> -- Select Sub Category -- </option>';
+                $.each(response,  function (key, value)
+                {
+                    option += '<option value="'+value.id+'"> '+ value.name +' </optoin>';
+                })
+                var subCategoryId = $('#subCategoryId');
+                subCategoryId.empty();
+                subCategoryId.append(option);
+            }
+        });
+    }
+</script>
 </html>
 

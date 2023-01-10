@@ -56,6 +56,8 @@ Route::middleware([
 
     //product
     Route::get('/admin/product/view', [ProductController::class,'index'])->name('product.view');
+    Route::get('/admin/product/get-all-sub-category', [ProductController::class, 'getAllSubCategory'])->name('get-all-sub-category');
+
     Route::get('/admin/product/create', [ProductController::class,'create'])->name('product.create');
     Route::post('/admin/product/store', [ProductController::class,'store'])->name('product.store');
     Route::get('/admin/product/edit/{id}', [ProductController::class,'edit'])->name('product.edit');
@@ -77,5 +79,14 @@ Route::middleware([
     Route::get('/admin/order/edit/{id}', [CustomerController::class,'edit'])->name('order.edit');
     Route::post('/admin/order/update/{id}', [CustomerController::class,'update'])->name('order.update');
     Route::post('/admin/order/destroy/{id}', [CustomerController::class,'destroy'])->name('order.destroy');
+
+
+    //order
+    Route::get('/admin/user/view', [UserController::class,'index'])->name('user.view');
+    Route::get('/admin/user/create', [UserController::class,'create'])->name('user.create');
+    Route::post('/admin/user/store', [UserController::class,'store'])->name('user.store');
+    Route::get('/admin/user/edit/{id}', [UserController::class,'edit'])->name('user.edit');
+    Route::post('/admin/user/update/{id}', [UserController::class,'update'])->name('user.update');
+    Route::post('/admin/user/destroy/{id}', [UserController::class,'destroy'])->name('user.destroy');
 
 });

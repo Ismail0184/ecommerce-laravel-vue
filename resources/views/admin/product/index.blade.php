@@ -40,9 +40,12 @@
 
                                             <tr>
                                                 <th style="width:1%">#</th>
-                                                <th style="width:10%">Category Name</th>
+                                                <th style="width:10%">Code</th>
+                                                <th style="width:10%">Product Name</th>
+                                                <th style="width:10%">Unit</th>
                                                 <th style="width:59%">Description</th>
                                                 <th style="width:10%">Category</th>
+                                                <th style="width:10%">Sub-category</th>
                                                 <th style="width:10%">Image</th>
                                                 <th style="width:10%">Option</th>
                                             </tr>
@@ -51,9 +54,12 @@
                                             @foreach($products as $product)
                                                 <tr>
                                                     <td style="vertical-align:middle">{{$loop->iteration}}</td>
+                                                    <td style="vertical-align:middle">{{$product->code}}</td>
                                                     <td style="vertical-align:middle">{{$product->name}}</td>
+                                                    <td style="vertical-align:middle">{{$product->unit->name}}</td>
                                                     <td style="vertical-align:middle">{{$product->description}}</td>
                                                     <td style="vertical-align:middle">{{$product->category->name}}</td>
+                                                    <td style="vertical-align:middle">{{$product->subcategory->name}}</td>
                                                     <td style="vertical-align:middle"><img src="/{{$product->image}}" alt="" style="height:30px; width:30px"></td>
                                                     <td style="vertical-align:middle">
                                                         <form action="{{route('sub_category.destroy', ['id' => $product->id])}}" method="post">

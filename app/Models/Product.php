@@ -24,6 +24,7 @@ class Product extends Model
     {
         self::$product = new Product();
         self::$product->category_id = $request->category_id;
+        self::$product->entry_by = $request->entry_by;
         self::$product->sub_category_id = $request->sub_category_id;
         self::$product->brand_id = $request->brand_id;
         self::$product->unit_id = $request->unit_id;

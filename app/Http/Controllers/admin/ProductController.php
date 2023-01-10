@@ -20,6 +20,11 @@ class ProductController extends Controller
 
     private $products, $categories, $subcategories, $brands, $units;
 
+    public function getAllSubCategory()
+    {
+        return response()->json(SubCategory::where('category_id', $_GET['id'])->get());
+    }
+
     public function index()
     {
         $this->products = Product::all();
@@ -35,7 +40,7 @@ class ProductController extends Controller
     {
         return view('admin.product.create',[
             'categories'        => Category::where('status', 1)->get(),
-            'sub_categories'    => SubCategory::where('status', 1)->get(),
+            'subcategories'    => SubCategory::where('status', 1)->get(),
             'brands'            => brand::where('status', 1)->get(),
             'units'             => Unit::where('status', 1)->get(),
             ]);
@@ -49,7 +54,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Product::newProduct($request);
+        return redirect('/admin/product/view')->with('store_message','The product has been created successfully');
     }
 
     /**

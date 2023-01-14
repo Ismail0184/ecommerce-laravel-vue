@@ -488,7 +488,7 @@
                                             <div class="row align-items-center">
                                                 <div class="col-lg-4 col-md-4 col-12">
                                                     <div class="product-image">
-                                                        <img src="assets/images/products/product-1.jpg" alt="#">
+                                                        <img src="/assets/images/products/product-1.jpg" alt="#">
                                                         <div class="button">
                                                             <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
                                                                 Cart</a>

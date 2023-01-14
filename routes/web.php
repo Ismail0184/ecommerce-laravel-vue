@@ -10,10 +10,17 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\CustomerController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\MainController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [MainController::class,'index'])->name('home');
+Route::get('/about', [MainController::class,'about'])->name('about');
+Route::get('/contact', [MainController::class,'contact'])->name('contact');
+Route::get('/login', [MainController::class,'login'])->name('login');
+Route::get('/register', [MainController::class,'register'])->name('register');
+Route::get('/faq', [MainController::class, 'faq'])->name('faq');
+Route::get('/category-product/{id}', [MainController::class, 'categoryProduct'])->name('category-product');
+
+
 
 Route::middleware([
     'auth:sanctum',

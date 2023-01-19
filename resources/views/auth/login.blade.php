@@ -7,13 +7,13 @@
     <meta content="Manage your website by customization from the admin panel" name="description" />
     <meta content="Md Ismail Hossain | 01845854380" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{asset('/')}}website/assets/images/favicon.ico">
+    <link rel="shortcut icon" href="{{asset('/')}}admin/assets/images/favicon.ico">
     <!-- Theme Config Js -->
-    <script src="{{asset('/')}}website/assets/js/hyper-config.js"></script>
+    <script src="{{asset('/')}}admin/assets/js/hyper-config.js"></script>
     <!-- App css -->
-    <link href="{{asset('/')}}website/assets/css/app-saas.min.css" rel="stylesheet" type="text/css" id="app-style" />
+    <link href="{{asset('/')}}admin/assets/css/app-saas.min.css" rel="stylesheet" type="text/css" id="app-style" />
     <!-- Icons css -->
-    <link href="{{asset('/')}}website/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('/')}}admin/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="authentication-bg">
@@ -26,7 +26,7 @@
                     <!-- Logo -->
                     <div class="card-header pt-4 pb-4 text-center bg-primary">
                         <a href="index.html">
-                            <span><img src="{{asset('/')}}website/assets/images/logo.png" alt="logo" height="22"></span>
+                            <span><img src="{{asset('/')}}admin/assets/images/logo.png" alt="logo" height="22"></span>
                         </a>
                     </div>
 
@@ -88,7 +88,7 @@
 <footer class="footer footer-alt">
     <script>document.write(new Date().getFullYear())</script> © Md Ismail Hossain
 </footer>
-<script src="{{asset('/')}}website/assets/js/vendor.min.js"></script>
-<script src="{{asset('/')}}website/assets/js/app.min.js"></script>
+<script src="{{asset('/')}}admin/assets/js/vendor.min.js"></script>
+<script src="{{asset('/')}}admin/assets/js/app.min.js"></script>
 </body>
 </html>

@@ -1,115 +1,87 @@
-@extends('website.master')
+@extends('website.master2')
 
 @section('title')
     Contact Page
 @endsection
 
 @section('body')
-    <div class="breadcrumbs">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="breadcrumbs-content">
-                        <h1 class="page-title">Contact Us</h1>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-12">
-                    <ul class="breadcrumb-nav">
-                        <li><a href="index.html"><i class="lni lni-home"></i> Home</a></li>
-                        <li>Contact</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
 
-
+    <!-- Start Contact -->
     <section id="contact-us" class="contact-us section">
         <div class="container">
             <div class="contact-head">
                 <div class="row">
-                    <div class="col-12">
-                        <div class="section-title">
-                            <h2>Contact Us</h2>
-                            <p>There are many variations of passages of Lorem
-                                Ipsum available, but the majority have suffered alteration in some form.</p>
+                    <div class="col-lg-8 col-12">
+                        <div class="form-main">
+                            <div class="title">
+                                <h4>Get in touch</h4>
+                                <h3>Write us a message</h3>
+                            </div>
+                            <form class="form" method="post" action="mail/mail.php">
+                                <div class="row">
+                                    <div class="col-lg-6 col-12">
+                                        <div class="form-group">
+                                            <label>Your Name<span>*</span></label>
+                                            <input name="name" type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-12">
+                                        <div class="form-group">
+                                            <label>Your Subjects<span>*</span></label>
+                                            <input name="subject" type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-12">
+                                        <div class="form-group">
+                                            <label>Your Email<span>*</span></label>
+                                            <input name="email" type="email" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-12">
+                                        <div class="form-group">
+                                            <label>Your Phone<span>*</span></label>
+                                            <input name="company_name" type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group message">
+                                            <label>your message<span>*</span></label>
+                                            <textarea name="message" placeholder=""></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group button">
+                                            <button type="submit" class="btn ">Send Message</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                </div>
-                <div class="contact-info">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-12 col-12">
-                            <div class="single-info-head">
-
-                                <div class="single-info">
-                                    <i class="lni lni-map"></i>
-                                    <h3>Address</h3>
-                                    <ul>
-                                        <li>44 Shirley Ave. West Chicago,<br> IL 60185, USA.</li>
-                                    </ul>
-                                </div>
-
-
-                                <div class="single-info">
-                                    <i class="lni lni-phone"></i>
-                                    <h3>Call us on</h3>
-                                    <ul>
-                                        <li><a href="tel:+18005554400">+1 800 555 44 00 (Toll free)</a></li>
-                                        <li><a href="tel:+321556667890">+321 55 666 7890</a></li>
-                                    </ul>
-                                </div>
-
-
-                                <div class="single-info">
-                                    <i class="lni lni-envelope"></i>
-                                    <h3>Mail at</h3>
-                                    <ul>
-                                        <li><a href="https://demo.graygrids.com/cdn-cgi/l/email-protection#81f2f4f1f1eef3f5c1f2e9eef1e6f3e8e5f2afe2eeec"><span class="__cf_email__" data-cfemail="483b3d3838273a3c083b2027382f3a212c3b662b2725">[email&#160;protected]</span></a>
-                                        </li>
-                                        <li><a href="https://demo.graygrids.com/cdn-cgi/l/email-protection#3b585a495e5e497b4853544b5c49525f4815585456"><span class="__cf_email__" data-cfemail="3b585a495e5e497b4853544b5c49525f4815585456">[email&#160;protected]</span></a></li>
-                                    </ul>
-                                </div>
-
+                    <div class="col-lg-4 col-12">
+                        <div class="single-head">
+                            <div class="single-info">
+                                <i class="fa fa-phone"></i>
+                                <h4 class="title">Call us Now:</h4>
+                                <ul>
+                                    <li>+123 456-789-1120</li>
+                                    <li>+522 672-452-1120</li>
+                                </ul>
                             </div>
-                        </div>
-                        <div class="col-lg-8 col-md-12 col-12">
-                            <div class="contact-form-head">
-                                <div class="form-main">
-                                    <form class="form" method="post" action="https://demo.graygrids.com/themes/shopgrids/assets/mail/mail.php">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <input name="name" type="text" placeholder="Your Name" required="required">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <input name="subject" type="text" placeholder="Your Subject" required="required">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <input name="email" type="email" placeholder="Your Email" required="required">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <input name="phone" type="text" placeholder="Your Phone" required="required">
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group message">
-                                                    <textarea name="message" placeholder="Your Message"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group button">
-                                                    <button type="submit" class="btn ">Submit Message</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                            <div class="single-info">
+                                <i class="fa fa-envelope-open"></i>
+                                <h4 class="title">Email:</h4>
+                                <ul>
+                                    <li><a href="mailto:info@yourwebsite.com">info@yourwebsite.com</a></li>
+                                    <li><a href="mailto:info@yourwebsite.com">support@yourwebsite.com</a></li>
+                                </ul>
+                            </div>
+                            <div class="single-info">
+                                <i class="fa fa-location-arrow"></i>
+                                <h4 class="title">Our Address:</h4>
+                                <ul>
+                                    <li>KA-62/1, Travel Agency, 45 Grand Central Terminal, New York.</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -117,4 +89,35 @@
             </div>
         </div>
     </section>
+    <!--/ End Contact -->
+
+    <!-- Map Section -->
+    <div class="map-section">
+        <div id="myMap"></div>
+    </div>
+    <!--/ End Map Section -->
+
+    <!-- Start Shop Newsletter  -->
+    <section class="shop-newsletter section">
+        <div class="container">
+            <div class="inner-top">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2 col-12">
+                        <!-- Start Newsletter Inner -->
+                        <div class="inner">
+                            <h4>Newsletter</h4>
+                            <p> Subscribe to our newsletter and get <span>10%</span> off your first purchase</p>
+                            <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
+                                <input name="EMAIL" placeholder="Your email address" required="" type="email">
+                                <button class="btn">Subscribe</button>
+                            </form>
+                        </div>
+                        <!-- End Newsletter Inner -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Shop Newsletter -->
+
 @endsection

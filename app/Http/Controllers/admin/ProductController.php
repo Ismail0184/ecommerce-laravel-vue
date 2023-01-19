@@ -18,7 +18,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    private $products, $categories, $subcategories, $brands, $units;
+    private $products, $categories, $subcategories, $brands, $units, $product;
 
     public function getAllSubCategory()
     {
@@ -77,7 +77,13 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.product.create',[
+            'categories'        => Category::where('status', 1)->get(),
+            'subcategories'    => SubCategory::where('status', 1)->get(),
+            'brands'            => brand::where('status', 1)->get(),
+            'units'             => Unit::where('status', 1)->get(),
+            'product'           => Product::find($id),
+        ]);
     }
 
     /**
@@ -89,7 +95,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Product::updateProduct($request, $id);
+        return redirect('admin/product/view')->with('update_message','This product has been successfully updated');
     }
 
     /**
@@ -100,6 +107,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Product::deleteProduct($id);
+        return redirect('admin/product/view')->with('destroy','This product has been deleted');
     }
 }

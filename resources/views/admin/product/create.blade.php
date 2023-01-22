@@ -135,7 +135,7 @@
                                                 <div class="input-group">
                                                     <input type="file" name="image" class="form-control-file"/>
                                                     @if (request('id')>0)
-                                                        <img src="{{asset($subcategory->image)}}" alt="" height="100" width="130"/>
+                                                        <img src="{{asset($product->image)}}" alt="" height="100" width="130"/>
                                                     @endif
                                                     <div class="invalid-feedback">Please choose a username.</div>
                                                 </div>

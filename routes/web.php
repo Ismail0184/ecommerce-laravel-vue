@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\CustomerController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\UserController;
 Use App\Http\Controllers\website\MainController;
+use App\Http\Controllers\admin\CarouselController;
 
 
 Route::get('/', [MainController::class,'index'])->name('home');
@@ -30,6 +31,14 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', [HomeController::class,'index'])->name('dashboard');
+
+    //carousel
+    Route::get('/admin/carousel/view', [CarouselController::class,'index'])->name('carousel.view');
+    Route::get('/admin/carousel/create', [CarouselController::class,'create'])->name('carousel.create');
+    Route::post('/admin/carousel/store', [CarouselController::class,'store'])->name('carousel.store');
+    Route::get('/admin/carousel/edit/{id}', [CarouselController::class,'edit'])->name('carousel.edit');
+    Route::post('/admin/carousel/update/{id}', [CarouselController::class,'update'])->name('carousel.update');
+    Route::post('/admin/carousel/destroy/{id}', [CarouselController::class,'destroy'])->name('carousel.destroy');
 
     //category
     Route::get('/admin/category/view', [CategoryController::class,'index'])->name('category.view');

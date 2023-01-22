@@ -198,21 +198,8 @@
                                 <div class="navbar-collapse">
                                     <div class="nav-inner">
                                         <ul class="nav main-menu menu navbar-nav">
-                                            <li class="active"><a href="#">Home</a></li>
-                                            <li><a href="#">Product</a></li>
-                                            <li><a href="#">Service</a></li>
-                                            <li><a href="#">Shop<i class="ti-angle-down"></i><span class="new">New</span></a>
-                                                <ul class="dropdown">
-                                                    <li><a href="cart.html">Cart</a></li>
-                                                    <li><a href="checkout.html">Checkout</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Pages</a></li>
-                                            <li><a href="#">Blog<i class="ti-angle-down"></i></a>
-                                                <ul class="dropdown">
-                                                    <li><a href="blog-single-sidebar.html">Blog Single Sidebar</a></li>
-                                                </ul>
-                                            </li>
+                                            <li class="active"><a href="{{route('home')}}">Home</a></li>
+                                            <li><a href="{{route('about')}}">About Us</a></li>
                                             <li><a href="{{route('contact')}}">Contact Us</a></li>
                                         </ul>
                                     </div>

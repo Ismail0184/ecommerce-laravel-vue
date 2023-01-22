@@ -485,6 +485,13 @@
                 <li class="side-nav-title side-nav-item">Modules</li>
 
                 <li class="side-nav-item">
+                    <a href="{{route('carousel.view')}}" class="side-nav-link">
+                        <i class="uil-calender"></i>
+                        <span> Carousel </span>
+                    </a>
+                </li>
+
+                <li class="side-nav-item">
                     <a href="{{route('category.view')}}" class="side-nav-link">
                         <i class="uil-calender"></i>
                         <span> Category </span>

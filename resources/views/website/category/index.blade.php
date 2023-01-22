@@ -1,7 +1,7 @@
 @extends('website.master2')
 
 @section('title')
-    Category wise products
+    Category wise Products
 @endsection
 
 @section('body')

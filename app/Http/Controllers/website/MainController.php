@@ -15,7 +15,9 @@ class MainController extends Controller
     public function index()
     {
         $this->categories = Category::all();
-        return view('website.home.index', ['categories' =>$this->categories]);
+        return view('website.home.index', ['categories' =>$this->categories,
+            'products' => Product::all()
+            ]);
     }
 
     public function about()

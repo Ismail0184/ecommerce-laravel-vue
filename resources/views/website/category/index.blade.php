@@ -159,7 +159,7 @@
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="single-product">
                                 <div class="product-img">
-                                    <a href="product-details.html">
+                                    <a href="{{route('product-details', ['id'=>$product->id])}}">
                                         <img class="default-img" src="{{asset('/')}}{{$product->image}}" style="height:250px" alt="#">
                                         <img class="hover-img" src="{{asset('/')}}{{$product->image}}" alt="#">
                                     </a>
@@ -175,7 +175,7 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h3><a href="product-details.html">{{$product->name}}</a></h3>
+                                    <h3><a href="{{route('product-details', ['id'=>$product->id])}}">{{$product->name}}</a></h3>
                                     <div class="product-price">
                                         <span>৳ {{$product->selling_price}}</span>
                                     </div>

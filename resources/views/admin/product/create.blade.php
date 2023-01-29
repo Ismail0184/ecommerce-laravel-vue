@@ -130,6 +130,17 @@
                                                 <textarea name="long_description" id="simplemde1">@if (request('id')>0) {{$product->long_description}} @endif</textarea>                                                <div class="invalid-feedback">This field is required!</div>
                                             </div>
 
+                                            @if(request('id')>0)
+                                            <div class="mb-3">
+                                                <label class="form-label" for="validationCustom02">Status</label>
+                                                <select class="form-control select2" name="status">
+                                                    <option value="1" @if($product->status == '1') selected @endif>Active</option>
+                                                    <option value="0" @if($product->status == '0') selected @endif>Inactive</option>
+                                                </select>
+                                                <div class="invalid-feedback">This field is required!</div>
+                                            </div>
+                                            @endif
+
                                             <div class="mb-3">
                                                 <label class="form-label" for="validationCustomUsername">Image</label>
                                                 <div class="input-group">
@@ -140,7 +151,25 @@
                                                     <div class="invalid-feedback">Please choose a username.</div>
                                                 </div>
                                             </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="validationCustomUsername">Other Images</label>
+                                                <div class="input-group">
+                                                    <input type="file" name="other_image[]" multiple class="form-control-file"/>
+                                                    @if (request('id')>0)
+                                                    @foreach($product->otherImages as $image)
+                                                        <img src="{{asset($image->image)}}" alt="" height="100" width="130"/>
+                                                    @endforeach
+                                                    @endif
+                                                    <div class="invalid-feedback">Please choose a username.</div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="validationCustomUsername"></label>
+                                                <div class="input-group">
                                             <button class="btn btn-primary" type="submit">@if (request('id')>0) Update @else Add New @endif Product</button>
+                                                </div>
+                                            </div>
                                         </form>
                                     </div> <!-- end preview-->
                                 </div> <!-- end tab-content-->

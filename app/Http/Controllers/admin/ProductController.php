@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\brand;
 use App\Models\Category;
+use App\Models\OtherImage;
 use App\Models\Product;
 use App\Models\SubCategory;
 use App\Models\Unit;
@@ -54,7 +55,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        Product::newProduct($request);
+        $this->product = Product::newProduct($request);
+        OtherImage::newOtherImage($request, $this->product->id);
         return redirect('/admin/product/view')->with('store_message','The product has been created successfully');
     }
 
@@ -66,7 +68,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $this->product = Product::find($id);
+        return view('admin.product.show', ['product'=>$this->product]);
     }
 
     /**

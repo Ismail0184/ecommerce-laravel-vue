@@ -36,9 +36,9 @@
     <link rel="stylesheet" href="{{asset('/')}}website/assets/css/owl-carousel.css">
     <!-- Slicknav -->
     <link rel="stylesheet" href="{{asset('/')}}website/assets/css/slicknav.min.css">
-
     <!-- Eshop StyleSheet -->
     <link rel="stylesheet" href="{{asset('/')}}website/assets/css/reset.css">
+    <link rel="stylesheet" href="{{asset('/')}}website/assets/css/xzoom.css">
     <link rel="stylesheet" href="{{asset('/')}}website/assets/css/style.css">
     <link rel="stylesheet" href="{{asset('/')}}website/assets/css/responsive.css">
 
@@ -46,20 +46,6 @@
 
 </head>
 <body class="js">
-
-<!-- Preloader -->
-<div class="preloader">
-    <div class="preloader-inner">
-        <div class="preloader-icon">
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-</div>
-<!-- End Preloader -->
-
-
-
 <!-- Header -->
 <header class="header shop">
     <!-- Topbar -->
@@ -80,10 +66,16 @@
                     <!-- Top Right -->
                     <div class="right-content">
                         <ul class="list-main">
-                            <li><i class="ti-location-pin"></i> Store location</li>
-                            <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
-                            <li><i class="ti-user"></i> <a href="#">My account</a></li>
-                            <li><i class="ti-power-off"></i><a href="{{route('login')}}">Login</a></li>
+                            @if(Session::get('customer_id'))
+                                <li><i class="ti-user"></i> <a href="#">Hello {{Session::get('customer_name')}}</a></li>
+                                <li><i class="ti-alarm-clock"></i><a href="{{route('customer.dashboard')}}">Dashboard</a></li>
+                                <li><i class="ti-power-off"></i><a href="{{route('customer.logout')}}">Logout</a></li>
+                            @else
+                                <li><i class="ti-location-pin"></i> Store location</li>
+                                <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
+                                <li><i class="ti-user"></i><a href="{{route('customer.register')}}">Register</a></li>
+                                <li><i class="ti-power-off"></i><a href="{{route('customer.login')}}">Login</a></li>
+                            @endif
                         </ul>
                     </div>
                     <!-- End Top Right -->
@@ -142,31 +134,29 @@
                             <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
                         </div>
                         <div class="sinlge-bar shopping">
-                            <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
+                            <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">{{count(Cart::getContent())}}</span></a>
                             <!-- Shopping Item -->
                             <div class="shopping-item">
                                 <div class="dropdown-cart-header">
-                                    <span>2 Items</span>
-                                    <a href="#">View Cart</a>
+                                    <span>{{count(Cart::getContent())}} Items</span>
+                                    <a href="{{route('cart.show')}}">View Cart</a>
                                 </div>
                                 <ul class="shopping-list">
-                                    <li>
-                                        <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-                                        <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                        <h4><a href="#">Woman Ring</a></h4>
-                                        <p class="quantity">1x - <span class="amount">$99.00</span></p>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-                                        <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                        <h4><a href="#">Woman Necklace</a></h4>
-                                        <p class="quantity">1x - <span class="amount">$35.00</span></p>
-                                    </li>
+                                    @php($total = 0)
+                                    @foreach(Cart::getContent() as $cartProduct)
+                                        <li>
+                                            <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                                            <a class="cart-img" href="#"><img src="{{asset($cartProduct->attributes->image)}}" alt="#"></a>
+                                            <h4><a href="#">{{$cartProduct->name}}</a></h4>
+                                            <p class="quantity">{{$cartProduct->quantity}} * {{$cartProduct->price}} = {{$cartProduct->quantity*$cartProduct->price}}  <span class="amount">{{$cartProduct->selling_price}}</span></p>
+                                        </li>
+                                        @php( $total = $total + $cartProduct->quantity*$cartProduct->price)
+                                    @endforeach
                                 </ul>
                                 <div class="bottom">
                                     <div class="total">
                                         <span>Total</span>
-                                        <span class="total-amount">$134.00</span>
+                                        <span class="total-amount">৳ {{number_format($total,2)}}</span>
                                     </div>
                                     <a href="{{route('checkout')}}" class="btn animate">Checkout</a>
                                 </div>
@@ -191,20 +181,7 @@
                                     <div class="nav-inner">
                                         <ul class="nav main-menu menu navbar-nav">
                                             <li class="active"><a href="{{route('home')}}">Home</a></li>
-                                            <li><a href="#">Product</a></li>
-                                            <li><a href="#">Service</a></li>
-                                            <li><a href="#">Shop<i class="ti-angle-down"></i><span class="new">New</span></a>
-                                                <ul class="dropdown">
-                                                    <li><a href="cart.html">Cart</a></li>
-                                                    <li><a href="checkout.html">Checkout</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Pages</a></li>
-                                            <li><a href="#">Blog<i class="ti-angle-down"></i></a>
-                                                <ul class="dropdown">
-                                                    <li><a href="blog-single-sidebar.html">Blog Single Sidebar</a></li>
-                                                </ul>
-                                            </li>
+                                            <li><a href="{{route('about')}}">About Us</a></li>
                                             <li><a href="{{route('contact')}}">Contact Us</a></li>
                                         </ul>
                                     </div>
@@ -229,7 +206,7 @@
                 <div class="bread-inner">
                     <ul class="bread-list">
                         <li><a href="{{route('home')}}">Home<i class="ti-arrow-right"></i></a></li>
-                        <li class="active"><a href="blog-single.html">Contact</a></li>
+                        <li class="active"><a href="blog-single.html">@yield('title')</a></li>
                     </ul>
                 </div>
             </div>
@@ -378,5 +355,7 @@
 <script src="{{asset('/')}}website/assets/js/map-script.js"></script>
 <!-- Active JS -->
 <script src="{{asset('/')}}website/assets/js/active.js"></script>
+<script src="{{asset('/')}}website/assets/js/xzoom.min.js"></script>
+<script src="{{asset('/')}}website/assets/js/setup.js"></script>
 </body>
 </html>

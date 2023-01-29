@@ -12,6 +12,11 @@ use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\UserController;
 Use App\Http\Controllers\website\MainController;
 use App\Http\Controllers\admin\CarouselController;
+use App\Http\Controllers\website\CartController;
+use App\Http\Controllers\website\CheckoutController;
+use App\Http\Controllers\website\CustomerAuthController;
+use App\Http\Controllers\website\CustomerDashboardController;
+use App\Http\Controllers\admin\AdminOrderController;
 
 
 Route::get('/', [MainController::class,'index'])->name('home');
@@ -20,9 +25,31 @@ Route::get('/contact', [MainController::class,'contact'])->name('contact');
 //Route::get('/login', [MainController::class,'login'])->name('login');
 //Route::get('/register', [MainController::class,'register'])->name('register');
 Route::get('/faq', [MainController::class, 'faq'])->name('faq');
+Route::get('/product-details/{id}', [MainController::class, 'productDetails'])->name('product-details');
 Route::get('/category-product/{id}', [MainController::class, 'categoryProduct'])->name('category-product');
-Route::get('/checkout', [MainController::class,'checkout'])->name('checkout');
+Route::get('/subcategory-product/{id}', [MainController::class, 'subcategoryProduct'])->name('subcategory-product');
 
+
+// cart
+Route::post('/cart/add/{id}', [CartController::class,'add'])->name('cart.add');
+Route::get('/cart/show/', [CartController::class,'show'])->name('cart.show');
+Route::post('/cart/remove/{id}', [CartController::class,'remove'])->name('cart.remove');
+Route::post('/cart/update/{id}', [CartController::class,'update'])->name('cart.update');
+
+// checkout
+Route::get('/checkout', [CheckoutController::class,'index'])->name('checkout');
+
+// Order
+Route::post('/confirm-order', [CheckoutController::class, 'confirmOrder'])->name('order.confirm');
+Route::get('/complete-order', [CheckoutController::class, 'completeOrder'])->name('order.complete');
+
+// Customer
+Route::get('/customer/login', [CustomerAuthController::class, 'login'])->name('customer.login');
+Route::post('/customer-login', [CustomerAuthController::class, 'newLogin'])->name('customer.logins');
+Route::get('/customer/register', [CustomerAuthController::class, 'register'])->name('customer.register');
+Route::post('/customer-register', [CustomerAuthController::class, 'create'])->name('customer.registers');
+Route::get('/customer-logout', [CustomerAuthController::class, 'logout'])->name('customer.logout');
+Route::get('/customer-dashboard', [CustomerDashboardController::class, 'index'])->name('customer.dashboard')->middleware('customer');
 
 
 Route::middleware([
@@ -78,6 +105,7 @@ Route::middleware([
 
     Route::get('/admin/product/create', [ProductController::class,'create'])->name('product.create');
     Route::post('/admin/product/store', [ProductController::class,'store'])->name('product.store');
+    Route::get('/admin/product/show/{id}', [ProductController::class,'show'])->name('product.show');
     Route::get('/admin/product/edit/{id}', [ProductController::class,'edit'])->name('product.edit');
     Route::post('/admin/product/update/{id}', [ProductController::class,'update'])->name('product.update');
     Route::post('/admin/product/destroy/{id}', [ProductController::class,'destroy'])->name('product.destroy');
@@ -91,16 +119,16 @@ Route::middleware([
     Route::post('/admin/customer/destroy/{id}', [CustomerController::class,'destroy'])->name('customer.destroy');
 
     //order
-    Route::get('/admin/order/view', [CustomerController::class,'index'])->name('order.view');
-    Route::get('/admin/order/create', [CustomerController::class,'create'])->name('order.create');
-    Route::post('/admin/order/store', [CustomerController::class,'store'])->name('order.store');
-    Route::get('/admin/order/edit/{id}', [CustomerController::class,'edit'])->name('order.edit');
-    Route::post('/admin/order/update/{id}', [CustomerController::class,'update'])->name('order.update');
-    Route::post('/admin/order/destroy/{id}', [CustomerController::class,'destroy'])->name('order.destroy');
+    Route::get('/admin/order/view', [AdminOrderController::class,'index'])->name('order.view');
+    Route::get('/admin/order-detail/{id}', [AdminOrderController::class, 'orderDetail'])->name('admin.order-detail');
+    Route::get('/admin/order-invoice/{id}', [AdminOrderController::class, 'orderInvoice'])->name('admin.order-invoice');
+    Route::get('/admin/download-invoice/{id}', [AdminOrderController::class, 'downloadInvoice'])->name('admin.download-invoice');
+    Route::get('/admin/order-edit/{id}', [AdminOrderController::class, 'edit'])->name('admin.order-edit');
+    Route::get('/admin/order-delete/{id}', [AdminOrderController::class, 'delete'])->name('admin.order-delete');
 
 
     //order
-    Route::get('/admin/user/view', [UserController::class,'index'])->name('user.view');
+    Route::get('/admin/a/view', [UserController::class,'index'])->name('user.view');
     Route::get('/admin/user/create', [UserController::class,'create'])->name('user.create');
     Route::post('/admin/user/store', [UserController::class,'store'])->name('user.store');
     Route::get('/admin/user/edit/{id}', [UserController::class,'edit'])->name('user.edit');

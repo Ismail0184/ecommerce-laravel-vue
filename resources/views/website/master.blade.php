@@ -73,10 +73,16 @@
                     <!-- Top Right -->
                     <div class="right-content">
                         <ul class="list-main">
-                            <li><i class="ti-location-pin"></i> Store location</li>
-                            <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
-                            <li><i class="ti-user"></i> <a href="#">My account</a></li>
-                            <li><i class="ti-power-off"></i><a href="{{route('login')}}">Login</a></li>
+                            @if(Session::get('customer_id'))
+                                <li><i class="ti-user"></i> <a href="#">Hello {{Session::get('customer_name')}}</a></li>
+                                <li><i class="ti-alarm-clock"></i><a href="{{route('customer.dashboard')}}">Dashboard</a></li>
+                                <li><i class="ti-power-off"></i><a href="{{route('customer.logout')}}">Logout</a></li>
+                            @else
+                                <li><i class="ti-location-pin"></i> Store location</li>
+                                <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
+                                <li><i class="ti-user"></i><a href="{{route('customer.register')}}">Register</a></li>
+                                <li><i class="ti-power-off"></i><a href="{{route('customer.login')}}">Login</a></li>
+                            @endif
                         </ul>
                     </div>
                     <!-- End Top Right -->
@@ -135,33 +141,31 @@
                             <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
                         </div>
                         <div class="sinlge-bar shopping">
-                            <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
+                            <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">{{count(Cart::getContent())}}</span></a>
                             <!-- Shopping Item -->
                             <div class="shopping-item">
                                 <div class="dropdown-cart-header">
-                                    <span>2 Items</span>
-                                    <a href="#">View Cart</a>
+                                    <span>{{count(Cart::getContent())}} Items</span>
+                                    <a href="{{route('cart.show')}}">View Cart</a>
                                 </div>
                                 <ul class="shopping-list">
-                                    <li>
-                                        <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-                                        <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                        <h4><a href="#">Woman Ring</a></h4>
-                                        <p class="quantity">1x - <span class="amount">$99.00</span></p>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-                                        <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                        <h4><a href="#">Woman Necklace</a></h4>
-                                        <p class="quantity">1x - <span class="amount">$35.00</span></p>
-                                    </li>
+                                    @php($total = 0)
+                                    @foreach(Cart::getContent() as $cartProduct)
+                                        <li>
+                                            <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                                            <a class="cart-img" href="#"><img src="{{asset($cartProduct->attributes->image)}}" alt="#"></a>
+                                            <h4><a href="#">{{$cartProduct->name}}</a></h4>
+                                            <p class="quantity">{{$cartProduct->quantity}} * {{$cartProduct->price}} = {{$cartProduct->quantity*$cartProduct->price}}  <span class="amount">{{$cartProduct->selling_price}}</span></p>
+                                        </li>
+                                        @php( $total = $total + $cartProduct->quantity*$cartProduct->price)
+                                    @endforeach
                                 </ul>
                                 <div class="bottom">
                                     <div class="total">
                                         <span>Total</span>
-                                        <span class="total-amount">$134.00</span>
+                                        <span class="total-amount">৳ {{number_format($total,2)}}</span>
                                     </div>
-                                    <a href="checkout.html" class="btn animate">Checkout</a>
+                                    <a href="{{route('checkout')}}" class="btn animate">Checkout</a>
                                 </div>
                             </div>
                             <!--/ End Shopping Item -->
@@ -182,10 +186,17 @@
                             <ul class="main-category">
                                 @foreach($categories as $category)
                                 <li><a href="{{route('category-product', ['id' => $category->id])}}">{{$category->name}}
-                                        <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                        @if(count($category->subCategory) > 0)
+                                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                        @endif
+                                        </a>
+                                    @if(count($category->subCategory) > 0)
                                     <ul class="sub-category">
-                                        <li><a href="#">{{$category->subcategory}}</a></li>
+                                        @foreach($category->subCategory as $subCategory)
+                                        <li><a href="{{route('subcategory-product', ['id'=>$subCategory->id])}}">{{$subCategory->name}}</a></li>
+                                        @endforeach
                                     </ul>
+                                    @endif
                                 </li>
                                 @endforeach
                             </ul>

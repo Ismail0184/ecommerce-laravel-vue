@@ -42,10 +42,10 @@
                                                 <th style="width:1%">#</th>
                                                 <th style="width:10%">Code</th>
                                                 <th style="width:10%">Product Name</th>
-                                                <th style="width:10%">Unit</th>
                                                 <th style="width:10%">Category</th>
                                                 <th style="width:10%">Sub-category</th>
                                                 <th style="width:10%">Image</th>
+                                                <th style="width:10%">Status</th>
                                                 <th style="width:10%">Option</th>
                                             </tr>
                                             </thead>
@@ -55,14 +55,17 @@
                                                     <td style="vertical-align:middle">{{$loop->iteration}}</td>
                                                     <td style="vertical-align:middle">{{$product->code}}</td>
                                                     <td style="vertical-align:middle">{{$product->name}}</td>
-                                                    <td style="vertical-align:middle">{{$product->unit->name}}</td>
                                                     <td style="vertical-align:middle">{{$product->category->name}}</td>
                                                     <td style="vertical-align:middle">{{$product->subcategory->name}}</td>
                                                     <td style="vertical-align:middle"><img src="/{{$product->image}}" alt="" style="height:30px; width:30px"></td>
+                                                    <td style="vertical-align:middle">@if($product->status==1) <span style="color:green; font-weight: bold">Active</span> @else <span style="color: red; font-weight: bold">Inactive</span> @endif</td>
                                                     <td style="vertical-align:middle">
                                                         <form action="{{route('product.destroy', ['id' => $product->id])}}" method="post">
                                                             @csrf
-                                                            <a href="{{route('product.edit', ['id' => $product->id])}}" class="btn btn-success btn-sm" onclick="return confirm('Are you sure want to edit?');">
+                                                            <a href="{{route('product.show', ['id' => $product->id])}}" class="btn btn-success btn-sm">
+                                                                <i class="ri-book-line"></i>
+                                                            </a>
+                                                            <a href="{{route('product.edit', ['id' => $product->id])}}" class="btn btn-primary btn-sm" onclick="return confirm('Are you sure want to edit?');">
                                                                 <i class=" ri-pencil-line"></i>
                                                             </a>
                                                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete this.');">

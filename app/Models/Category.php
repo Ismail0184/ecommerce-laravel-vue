@@ -58,4 +58,9 @@ class Category extends Model
         }
         self::$category->delete();
     }
+
+    public function subCategory()
+    {
+        return $this->hasMany(SubCategory::class);
+    }
 }
